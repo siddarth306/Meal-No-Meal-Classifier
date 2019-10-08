@@ -8,7 +8,7 @@ def parse_and_interpolate(filename):
     filled_df_list = []
     for list_idx,each_list in enumerate(df_lists):
         cleaned_data = pd.Series(each_list).interpolate(method='linear').tolist()
-        if not any([val == math.isnan(x) for val in cleaned_data]):
+        if not any([math.isnan(val) for val in cleaned_data]):
             filled_df_list.append(cleaned_data)
    
     filled_df = pd.DataFrame(filled_df_list, columns=df.columns)
@@ -39,6 +39,7 @@ def parse(filename):
 #        print(coefs.coeff)
 #        print(coefs.coeffs)
 #        print("d")
-data = parse("data/CGMSeriesLunchPat1.csv")
-timestamps = parse("data/CGMDatenumLunchPat1.csv")
+import pdb; pdb.set_trace()
+data = parse_and_interpolate("data/CGMSeriesLunchPat3.csv")
+timestamps = parse("data/CGMDatenumLunchPat3.csv")
 #poly_coeff(data, timestamps)
