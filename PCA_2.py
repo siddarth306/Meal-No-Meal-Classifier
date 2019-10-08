@@ -29,3 +29,4 @@ def performPCA (FM):
     #  can be attributed to each of the principal components.
     print ("\nExplained Variance", pca.explained_variance_ratio_)
     print(principalDf)
+    return principalComponents
