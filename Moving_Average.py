@@ -2,9 +2,11 @@ from utilities import parse, parse_and_interpolate
 import numpy as np
 import math
 from PCA_2 import performPCA
+import matplotlib.pyplot as plt
 
-filename = 'CGMSeriesLunchPat1.csv'
-data = parse_and_interpolate(filename)
+# # clean data (should be done in main)
+# filename = 'CGMSeriesLunchPat1.csv'
+# data = parse_and_interpolate(filename)
 
 
 # moving_avg will always return 8 average values per row
@@ -26,13 +28,18 @@ def moving_avg(data):
                 tmp_sum = tmp_sum + row_data[col]
                 col = col + 1
 
-            print ('\n')
             col = col-overlap
-            moving_avg.append(tmp_sum)
+            moving_avg.append(tmp_sum/window_size)
 
         result.append(moving_avg)
     return result
 
+
+# #test
 # mvg_avg = moving_avg(data)
-# # Assuming 
-# performPCA(mvg_avg)
+# principleDf = performPCA(mvg_avg)
+
+# #plot Principle component 1
+# data = principleDf
+# plt.scatter(range(len(data)), data[:,0])
+# plt.show()
