@@ -2,6 +2,7 @@ from utilities import parse_and_interpolate
 import numpy as np
 from PCA_2 import performPCA
 import matplotlib.pyplot as plt
+import math
 
 
 def plot(data):
@@ -16,14 +17,14 @@ def main():
 	data = parse_and_interpolate(files[0])
 	fft_features = get_fft_features(data)
 	moving_avg = np.array(moving_avg(data))
-	moving_kurt = moving_kurtosis(data)
+	moving_kurt = moving_kurt(data)
 	
 	for index in range(1, len(files)):
 		data = parse_and_interpolate(file[index])
 	
 		fft_features = np.concatenate((fft_features, get_fft_features(data)), axis=0)
 		moving_avg = np.concatenate((moving_avg, numpy.array(moving_avg(data))), axis=0)
-		moving_kurt = np.concatenate((moving_kurt, moving_kurtosis(data)), axis=0)
+		moving_kurt = np.concatenate((moving_kurt, moving_kurt(data)), axis=0)
 
 
 	feature_mattrix = np.concatenate((moving_avg, moving_kurt, fft_features), axis=1)
