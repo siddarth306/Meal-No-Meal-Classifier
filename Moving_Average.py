@@ -1,13 +1,13 @@
-from utilities import parse
+from utilities import parse, parse_and_interpolate
 import numpy as np
 
-filename = 'test.csv'
-data = parse(filename)
+filename = 'CGMSeriesLunchPat1.csv'
+data = parse_and_interpolate(filename)
 
 def moving_avg(data):
     # settings
-    window_size = 10
-    overlap = 5
+    window_size = len(data[0]) // 5
+    overlap = window_size // 2
     result = []
 
     for row_data in data:
