@@ -1,6 +1,8 @@
 import numpy as np
 import math
 import pandas as pd
+from scipy.stats import kurtosis
+
 
 def parse_and_interpolate(filename):
     df = pd.read_csv(filename)
@@ -20,26 +22,3 @@ def parse(filename):
     return r
 
 
-#def poly_coeff(data_matrix, timestamps):
-#    import pdb; pdb.set_trace()
-#    for data, timestamps in zip(data_matrix, timestamps):
-#        data_list = data.tolist()
-#        timestamps_list = timestamps.tolist()
-#
-#        if math.isnan(data.tolist()[-1]):
-#            data_list = data_list[:-1]
-#            timestamps_list = timestamps[:-1]
-#        print(data)
-#        data_int = [int(i) for i in data_list]
-#        timestamps_int = [int(i) for i in timestamps_list]
-#        p = np.polyfit(data_int, timestamps_int, deg=3, full=True)
-#        coefs = np.poly1d(p)
-#        print(len(coefs.r))
-#        print(coefs.coef)
-#        print(coefs.coeff)
-#        print(coefs.coeffs)
-#        print("d")
-# import pdb; pdb.set_trace()
-# data = parse_and_interpolate("data/CGMSeriesLunchPat3.csv")
-# timestamps = parse("data/CGMDatenumLunchPat3.csv")
-#poly_coeff(data, timestamps)
