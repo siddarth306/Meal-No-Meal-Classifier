@@ -1,13 +1,21 @@
 from utilities import parse_and_interpolate
 import numpy as np
 from PCA_2 import performPCA
+import matplotlib.pyplot as plt
+
+
+def plot(data):
+	plt.scatter(range(len(data)), data)
+	#plt.ylim(-200, 500)
+	plt.show()
+
 
 def main():
 	files = ['CGMSeriesLunchPat1.csv', 'CGMSeriesLunchPat2.csv', 'CGMSeriesLunchPat3.csv', 'CGMSeriesLunchPat4.csv', 'CGMSeriesLunchPat5.csv'] 
 	
 	data = parse_and_interpolate(files[0])
 	fft_features = get_fft_features(data)
-	moving_avg = numpy.array(moving_avg(data))
+	moving_avg = np.array(moving_avg(data))
 	moving_kurt = moving_kurtosis(data)
 	
 	for index in range(1, len(files)):
@@ -21,9 +29,9 @@ def main():
 	feature_mattrix = np.concatenate((moving_avg, moving_kurt, fft_features), axis=1)
 	pca_matrix = performPCA(feature_mattrix)
 
-	plot(pca_matrix)
-	plot(fft_features)
-	plot(moving_avg)
-	plot(moving_kurt)
+	# plot(pca_matrix)
+	# plot(fft_features)
+	# plot(moving_avg)
+	# plot(moving_kurt)
 
 main()
