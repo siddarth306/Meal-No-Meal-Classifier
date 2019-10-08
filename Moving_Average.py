@@ -5,9 +5,10 @@ from PCA_2 import performPCA
 
 filename = 'CGMSeriesLunchPat1.csv'
 data = parse_and_interpolate(filename)
-data = [range(100)]
+data = [range(46)]
 print(data)
 
+# moving_avg will always return 8 average values per row
 def moving_avg(data):
     # settings
     window_size = math.ceil(len(data[0]) / 5.0)
@@ -25,13 +26,11 @@ def moving_avg(data):
                     break
                 tmp_sum = tmp_sum + row_data[col]
                 col = col + 1
-                print(col)
 
             print ('\n')
             col = col-overlap
             moving_avg.append(tmp_sum)
 
-        print(len(moving_avg))   
         result.append(moving_avg)
     return result
 
