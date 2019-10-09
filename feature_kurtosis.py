@@ -4,8 +4,12 @@ import math
 
 
 def moving_kurt(data):
-    window_size = math.ceil(len(data[0]) / 5.0)
-    overlap = math.ceil(window_size / 2.0)
+    offset = 0
+    if len(data[0]) % 5 == 0:
+        offset = 1
+    window_size = math.ceil(len(data[0]) / 7.0)
+    #overlap = 2
+    overlap =2
     result = []
 
     for row_data in data:
@@ -13,10 +17,14 @@ def moving_kurt(data):
         kurt_list = []
         while col < len(row_data)-window_size:
 
-            kurt = kurtosis(row_data[col:col+window_size])
+            kurt = kurtosis(row_data[col:col+window_size+1])
             kurt_list.append(kurt)
+            #print(col, col+window_size-overlap)
             col += window_size - overlap
-
         result.append(kurt_list)
     return result
 
+#for i in range(20,150):
+#    data = [range(35)]
+#    x = moving_kurt(data)
+#    print(len(x[0]))
