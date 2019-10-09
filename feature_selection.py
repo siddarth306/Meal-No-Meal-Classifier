@@ -12,7 +12,8 @@ from PCA_2 import performPCA
 def moving_avg(data):
     # settings
     window_size = math.ceil(len(data[0]) / 5.0)
-    overlap = math.ceil(window_size / 2.0)
+    #overlap = math.ceil(window_size / 2.0)
+    overlap = 0
     result = []
 
     for row_data in data:
@@ -45,8 +46,9 @@ def get_fft_features(data1):
 
 
 def moving_kurt(data):
-    window_size = math.ceil(len(data[0]) / 5.0)
-    overlap = math.ceil(window_size / 2.0)
+    window_size = math.ceil(len(data[0]) / 7.0)
+    #overlap = math.ceil(window_size / 2.0)
+    overlap = 2
     result = []
 
     for row_data in data:
@@ -54,7 +56,7 @@ def moving_kurt(data):
         kurt_list = []
         while col < len(row_data)-window_size:
 
-            kurt = kurtosis(row_data[col:col+window_size])
+            kurt = kurtosis(row_data[col:col+window_size + 1])
             kurt_list.append(kurt)
             col += window_size - overlap
 
