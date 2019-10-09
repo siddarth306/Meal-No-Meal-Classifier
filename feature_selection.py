@@ -1,5 +1,5 @@
 from utilities import parse, parse_and_interpolate
-from scipy.stats import kurtosis
+from scipy.stats import kurtosis,skew
 import numpy as np
 import pandas as pd 
 import tsfresh
@@ -83,6 +83,24 @@ def get_fft_features(data1):
 	feature5 = [ abs(list(tsfresh.feature_extraction.feature_calculators.fft_coefficient(data1[i,:30], [{"coeff": 5, "attr": "real"}]))[0][1]) for i in range(len(data1)) ]
 	featute_matrix = np.array([feature1, feature2, feature3, feature4, feature5])
 	return featute_matrix.T
+
+def moving_skew(data):
+    window_size = math.ceil(len(data[0]) / 12.0)
+    #overlap = math.ceil(window_size / 2.0)
+    overlap = 2
+    result = []
+
+    for row_data in data:
+        col = 0
+        skew_list = []
+        while col < len(row_data)-window_size:
+
+            skewness = skew(row_data[col:col+window_size + 1])
+            skew_list.append(skewness)
+            col += window_size - overlap
+
+        result.append(skew_list)
+    return result
 
 
 def moving_kurt(data):
