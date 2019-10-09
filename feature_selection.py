@@ -6,34 +6,74 @@ import tsfresh
 import math
 from PCA_2 import performPCA
 
+def count_window_size(data, fixed_overlap, window_size):
+    window_ct = 0
+    ix = 0
+    exit = 0
+    #count the windows
+    while ix < len(data):
+        for i in range(window_size):
+            if(ix==len(data)):
+                exit = 1
+                break
+            # print(data[ix])
+            ix=ix+1
+        
+        window_ct+=1
+        if(exit==1):
+            break
+        # print('\n')
+        ix=ix-fixed_overlap
+
+    # print("window_size: ", window_ct)
+    return window_ct
+
+def find_optimal_windowsize(data):
+    # start setting
+    fixed_overlap = int(len(data)/5/2) 
+    window_size = len(data)//5 
+
+    # find the window size that will give 5 window output
+    ct = count_window_size(data, fixed_overlap, window_size)
+    while ct!=5:
+        window_size=window_size+1
+        ct = count_window_size(data, fixed_overlap, window_size)
+
+    print ("Optimal window_size:", window_size, " for overlap:", fixed_overlap)
+    return window_size, fixed_overlap
 
 
-# moving_avg will always return 8 average values per row
-def moving_avg(data):
-    # settings
-    window_size = math.ceil(len(data[0]) / 5.0)
-    #overlap = math.ceil(window_size / 2.0)
-    overlap = 0
+#bug will fail if data len=11 because it will fail to find windowsize=5
+#it will work for our case where data len=31 or len=42
+def compute_moving_avg(data):
+    window_size, fixed_overlap = find_optimal_windowsize(data)
     result = []
 
     for row_data in data:
-        col = 0
+        ix = 0
+        exit=0
         moving_avg = []
-        while col < len(row_data)-window_size:
-            tmp_sum = 0
-
+        
+        while ix < len(row_data):
+            tmp_sum=0
             for i in range(window_size):
-                if col == len(row_data):
+                if(ix==len(row_data)):
+                    exit = 1
                     break
-                tmp_sum = tmp_sum + row_data[col]
-                col = col + 1
+                # print(row_data[ix])
+                tmp_sum+=row_data[ix]
+                ix=ix+1
 
-            print ('\n')
-            col = col-overlap
-            moving_avg.append(tmp_sum)
+            moving_avg.append(tmp_sum/window_size)
+            ix=ix-fixed_overlap
+            if(exit==1):
+                break
+            # print('\n')
+        
+        result.append(moving_avg)           
+    return result     
 
-        result.append(moving_avg)
-    return result
+
 
 def get_fft_features(data1):
 	feature1 = [ abs(list(tsfresh.feature_extraction.feature_calculators.fft_coefficient(data1[i,:30], [{"coeff": 1, "attr": "real"}]))[0][1]) for i in range(len(data1)) ]
