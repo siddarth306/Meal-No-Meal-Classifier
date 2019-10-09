@@ -45,7 +45,7 @@ def find_optimal_windowsize(data):
 
 #bug will fail if data len=11 because it will fail to find windowsize=5
 #it will work for our case where data len=31 or len=42
-def compute_moving_avg(data):
+def moving_avg(data):
     window_size, fixed_overlap = find_optimal_windowsize(data)
     result = []
 
