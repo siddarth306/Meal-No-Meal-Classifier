@@ -39,7 +39,7 @@ def find_optimal_windowsize(data):
         window_size=window_size+1
         ct = count_window_size(data, fixed_overlap, window_size)
 
-    print ("Optimal window_size:", window_size, " for overlap:", fixed_overlap)
+    #print ("Optimal window_size:", window_size, " for overlap:", fixed_overlap)
     return window_size, fixed_overlap
 
 
@@ -76,16 +76,16 @@ def moving_avg(data):
 
 
 def get_fft_features(data1):
-	feature1 = [ abs(list(tsfresh.feature_extraction.feature_calculators.fft_coefficient(data1[i,:30], [{"coeff": 1, "attr": "real"}]))[0][1]) for i in range(len(data1)) ]
-	feature2 = [ abs(list(tsfresh.feature_extraction.feature_calculators.fft_coefficient(data1[i,:30], [{"coeff": 2, "attr": "real"}]))[0][1]) for i in range(len(data1)) ]
-	feature3 = [ abs(list(tsfresh.feature_extraction.feature_calculators.fft_coefficient(data1[i,:30], [{"coeff": 3, "attr": "real"}]))[0][1]) for i in range(len(data1)) ]
-	feature4 = [ abs(list(tsfresh.feature_extraction.feature_calculators.fft_coefficient(data1[i,:30], [{"coeff": 4, "attr": "real"}]))[0][1]) for i in range(len(data1)) ]
-	feature5 = [ abs(list(tsfresh.feature_extraction.feature_calculators.fft_coefficient(data1[i,:30], [{"coeff": 5, "attr": "real"}]))[0][1]) for i in range(len(data1)) ]
+	feature1 = [ abs(list(tsfresh.feature_extraction.feature_calculators.fft_coefficient(data1[i,:30], [{"coeff": 2, "attr": "real"}]))[0][1]) for i in range(len(data1)) ]
+	feature2 = [ abs(list(tsfresh.feature_extraction.feature_calculators.fft_coefficient(data1[i,:30], [{"coeff": 3, "attr": "real"}]))[0][1]) for i in range(len(data1)) ]
+	feature3 = [ abs(list(tsfresh.feature_extraction.feature_calculators.fft_coefficient(data1[i,:30], [{"coeff": 4, "attr": "real"}]))[0][1]) for i in range(len(data1)) ]
+	feature4 = [ abs(list(tsfresh.feature_extraction.feature_calculators.fft_coefficient(data1[i,:30], [{"coeff": 5, "attr": "real"}]))[0][1]) for i in range(len(data1)) ]
+	feature5 = [ abs(list(tsfresh.feature_extraction.feature_calculators.fft_coefficient(data1[i,:30], [{"coeff": 6, "attr": "real"}]))[0][1]) for i in range(len(data1)) ]
 	featute_matrix = np.array([feature1, feature2, feature3, feature4, feature5])
 	return featute_matrix.T
 
 def moving_skew(data):
-    window_size = math.ceil(len(data[0]) / 12.0)
+    window_size = math.ceil(len(data[0]) / 7.0)
     #overlap = math.ceil(window_size / 2.0)
     overlap = 2
     result = []
