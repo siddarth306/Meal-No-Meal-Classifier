@@ -57,7 +57,14 @@ def main():
 	# plot(fft_features[:,3], "FFT 4", "black")
 	# plot(fft_features[:,4], "FFT 5", "black")
 
-	# ----------------plot moving Kurtosis features--------------------------
+	# ----------------plot Entropy feature--------------------------
+	plot(entropy_feature, "Entropy", "orange")
+
+	# ----------------plot Skewness feature--------------------------
+	plot(normal_skew_feature, "Skewness", "red")
+
+	# ----------------------plot moving Kurtosis features-------------------------------
+	# ----------------This was not the part of final four types of features-------------
 	# plot(moving_kurt_features[:,0], "Moving Kurtosis 1", "orange")
 	# plot(moving_kurt_features[:,1], "Moving Kurtosis 2", "orange")
 	# plot(moving_kurt_features[:,2], "Moving Kurtosis 3", "orange")
@@ -68,16 +75,13 @@ def main():
 	# plot(moving_kurt_features[:,7], "Moving Kurtosis 8", "orange")
 	# plot(moving_kurt_features[:,8], "Moving Kurtosis 9", "orange")
 
-
-	# ----------------plot moving Kurtosis features--------------------------
-	plot(entropy_feature, "Entropy", "orange")
-
-	# -----------------plot moving Skewness features--------------------------
+	# -----------------plot moving Skewness features------------------------------------
+	# ----------------This was not the part of final four types of features-------------
 	# plot(moving_skew_feature[:,0], "Moving Skewness 1", "red")
 	# plot(moving_skew_feature[:,1], "Moving Skewness 2", "red")
 	# plot(moving_skew_feature[:,2], "Moving Skewness 3", "red")
 	# plot(moving_skew_feature[:,3], "Moving Skewness 4", "red")
-	plot(normal_skew_feature, "Skewness 5", "red")
+	# plot(moving_skew_feature[:,4], "Moving Skewness 5", "red")
 	# plot(moving_skew_feature[:,5], "Moving Skewness 6", "red")
 	# plot(moving_skew_feature[:,6], "Moving Skewness 7", "red")
 	# plot(moving_skew_feature[:,7], "Moving Skewness 8", "red")

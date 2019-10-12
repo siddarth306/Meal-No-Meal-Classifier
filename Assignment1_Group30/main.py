@@ -25,7 +25,7 @@ def main():
 	#moving_kurt_features = moving_kurt(data)
 	entropy_feature = get_entropy(data)
 	moving_avg_features = np.array(moving_avg(data))
-	moving_skew_feature = moving_skew(data)
+	normal_skew_feature = normal_skew(data)
 
 	for index in range(1, len(files)):
 		data = parse_and_interpolate(files[index])
@@ -34,9 +34,9 @@ def main():
 		moving_avg_features = np.concatenate((moving_avg_features, np.array(moving_avg(data))), axis=0)
 		#moving_kurt_features = np.concatenate((moving_kurt_features, moving_kurt(data)), axis=0)
 		entropy_feature = np.concatenate((entropy_feature, get_entropy(data)), axis=0) 
-		moving_skew_feature = np.concatenate((moving_skew_feature, moving_skew(data)), axis=0)
+		normal_skew_feature = np.concatenate((normal_skew_feature, normal_skew(data)), axis=0)
 
-	feature_mattrix = np.concatenate(( moving_avg_features, entropy_feature, fft_features, moving_skew_feature), axis=1)
+	feature_mattrix = np.concatenate(( moving_avg_features, entropy_feature, fft_features, normal_skew_feature), axis=1)
 	np.set_printoptions(suppress=True)
 	print(feature_mattrix)
 	print(feature_mattrix.shape)
@@ -53,12 +53,18 @@ def main():
 	# -----------------plot FFT features--------------------------
 	# plot(fft_features[:,0], "FFT 1", "black")
 	# plot(fft_features[:,1], "FFT 2", "black")
-	# plot(fft_features[:,2], "FFT 3", "black")
+	plot(fft_features[:,2], "FFT 3", "black")
 	# plot(fft_features[:,3], "FFT 4", "black")
 	# plot(fft_features[:,4], "FFT 5", "black")
 
-	# -----------------plot moving Kurtosis features-------------------
-	# ------------(Note: This was not used as one of the four features)--------------
+	# ----------------plot Entropy feature--------------------------
+	plot(entropy_feature, "Entropy", "orange")
+
+	# ----------------plot Skewness feature--------------------------
+	plot(normal_skew_feature, "Skewness", "red")
+
+	# ----------------------plot moving Kurtosis features-------------------------------
+	# ----------------This was not the part of final four types of features-------------
 	# plot(moving_kurt_features[:,0], "Moving Kurtosis 1", "orange")
 	# plot(moving_kurt_features[:,1], "Moving Kurtosis 2", "orange")
 	# plot(moving_kurt_features[:,2], "Moving Kurtosis 3", "orange")
@@ -69,11 +75,8 @@ def main():
 	# plot(moving_kurt_features[:,7], "Moving Kurtosis 8", "orange")
 	# plot(moving_kurt_features[:,8], "Moving Kurtosis 9", "orange")
 
-
-	# ----------------plot Entropy feature--------------------------
-	# plot(entropy_feature, "Entropy", "orange")
-
-	# -----------------plot moving Skewness features--------------------------
+	# -----------------plot moving Skewness features------------------------------------
+	# ----------------This was not the part of final four types of features-------------
 	# plot(moving_skew_feature[:,0], "Moving Skewness 1", "red")
 	# plot(moving_skew_feature[:,1], "Moving Skewness 2", "red")
 	# plot(moving_skew_feature[:,2], "Moving Skewness 3", "red")

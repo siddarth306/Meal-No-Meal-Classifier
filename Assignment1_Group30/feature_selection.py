@@ -84,6 +84,15 @@ def get_fft_features(data1):
 	featute_matrix = np.array([feature1, feature2, feature3, feature4, feature5])
 	return featute_matrix.T
 
+
+def normal_skew(data):
+    result = []
+    for row_data in data:
+        skew_list = []
+        skewness = skew(row_data)
+        result.append([skewness])
+    return result
+
 def moving_skew(data):
     window_size = math.ceil(len(data[0]) / 7.0)
     #overlap = math.ceil(window_size / 2.0)
