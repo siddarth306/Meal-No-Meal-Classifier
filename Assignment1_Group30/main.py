@@ -53,11 +53,12 @@ def main():
 	# -----------------plot FFT features--------------------------
 	# plot(fft_features[:,0], "FFT 1", "black")
 	# plot(fft_features[:,1], "FFT 2", "black")
-	plot(fft_features[:,2], "FFT 3", "black")
+	# plot(fft_features[:,2], "FFT 3", "black")
 	# plot(fft_features[:,3], "FFT 4", "black")
 	# plot(fft_features[:,4], "FFT 5", "black")
 
-	# ----------------plot moving Kurtosis features--------------------------
+	# -----------------plot moving Kurtosis features-------------------
+	# ------------(Note: This was not used as one of the four features)--------------
 	# plot(moving_kurt_features[:,0], "Moving Kurtosis 1", "orange")
 	# plot(moving_kurt_features[:,1], "Moving Kurtosis 2", "orange")
 	# plot(moving_kurt_features[:,2], "Moving Kurtosis 3", "orange")
@@ -69,25 +70,25 @@ def main():
 	# plot(moving_kurt_features[:,8], "Moving Kurtosis 9", "orange")
 
 
-	# ----------------plot moving Kurtosis features--------------------------
-	plot(entropy_feature, "Entropy", "orange")
+	# ----------------plot Entropy feature--------------------------
+	# plot(entropy_feature, "Entropy", "orange")
 
 	# -----------------plot moving Skewness features--------------------------
 	# plot(moving_skew_feature[:,0], "Moving Skewness 1", "red")
 	# plot(moving_skew_feature[:,1], "Moving Skewness 2", "red")
 	# plot(moving_skew_feature[:,2], "Moving Skewness 3", "red")
 	# plot(moving_skew_feature[:,3], "Moving Skewness 4", "red")
-	plot(moving_skew_feature[:,4], "Moving Skewness 5", "red")
+	# plot(moving_skew_feature[:,4], "Moving Skewness 5", "red")
 	# plot(moving_skew_feature[:,5], "Moving Skewness 6", "red")
 	# plot(moving_skew_feature[:,6], "Moving Skewness 7", "red")
 	# plot(moving_skew_feature[:,7], "Moving Skewness 8", "red")
 	# plot(moving_skew_feature[:,8], "Moving Skewness 9", "red")
 
 	# -----------------plot PCA--------------------------
-	plot(pca_matrix[:,0], "Principal Component 1", "green")
-	plot(pca_matrix[:,1], "Principal Component 2", "green")
-	plot(pca_matrix[:,2], "Principal Component 3", "green")
-	plot(pca_matrix[:,3], "Principal Component 4", "green")
-	plot(pca_matrix[:,4], "Principal Component 5", "green")
+	# plot(pca_matrix[:,0], "Principal Component 1", "green")
+	# plot(pca_matrix[:,1], "Principal Component 2", "green")
+	# plot(pca_matrix[:,2], "Principal Component 3", "green")
+	# plot(pca_matrix[:,3], "Principal Component 4", "green")
+	# plot(pca_matrix[:,4], "Principal Component 5", "green")
 
 main()
