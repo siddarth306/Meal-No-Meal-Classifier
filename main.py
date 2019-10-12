@@ -25,7 +25,7 @@ def main():
 	#moving_kurt_features = moving_kurt(data)
 	entropy_feature = get_entropy(data)
 	moving_avg_features = np.array(moving_avg(data))
-	moving_skew_feature = moving_skew(data)
+	normal_skew_feature = normal_skew(data)
 
 	for index in range(1, len(files)):
 		data = parse_and_interpolate(files[index])
@@ -34,9 +34,9 @@ def main():
 		moving_avg_features = np.concatenate((moving_avg_features, np.array(moving_avg(data))), axis=0)
 		#moving_kurt_features = np.concatenate((moving_kurt_features, moving_kurt(data)), axis=0)
 		entropy_feature = np.concatenate((entropy_feature, get_entropy(data)), axis=0) 
-		moving_skew_feature = np.concatenate((moving_skew_feature, moving_skew(data)), axis=0)
+		normal_skew_feature = np.concatenate((normal_skew_feature, normal_skew(data)), axis=0)
 
-	feature_mattrix = np.concatenate(( moving_avg_features, entropy_feature, fft_features, moving_skew_feature), axis=1)
+	feature_mattrix = np.concatenate(( moving_avg_features, entropy_feature, fft_features, normal_skew_feature), axis=1)
 	np.set_printoptions(suppress=True)
 	print(feature_mattrix)
 	print(feature_mattrix.shape)
@@ -77,7 +77,7 @@ def main():
 	# plot(moving_skew_feature[:,1], "Moving Skewness 2", "red")
 	# plot(moving_skew_feature[:,2], "Moving Skewness 3", "red")
 	# plot(moving_skew_feature[:,3], "Moving Skewness 4", "red")
-	plot(moving_skew_feature[:,4], "Moving Skewness 5", "red")
+	plot(normal_skew_feature, "Skewness 5", "red")
 	# plot(moving_skew_feature[:,5], "Moving Skewness 6", "red")
 	# plot(moving_skew_feature[:,6], "Moving Skewness 7", "red")
 	# plot(moving_skew_feature[:,7], "Moving Skewness 8", "red")
