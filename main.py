@@ -18,7 +18,7 @@ def plot(data, title, color):
 
 
 def main():
-	files = ['CGMSeriesLunchPat1.csv', 'CGMSeriesLunchPat2.csv', 'CGMSeriesLunchPat3.csv', 'CGMSeriesLunchPat4.csv', 'CGMSeriesLunchPat5.csv'] 
+	files = ['CGMSeries/CGMSeriesLunchPat1.csv', 'CGMSeries/CGMSeriesLunchPat2.csv', 'CGMSeries/CGMSeriesLunchPat3.csv', 'CGMSeries/CGMSeriesLunchPat4.csv', 'CGMSeries/CGMSeriesLunchPat5.csv']
 	
 	data = parse_and_interpolate(files[0])
 	fft_features = get_fft_features(data)
