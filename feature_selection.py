@@ -43,6 +43,7 @@ def find_optimal_windowsize(data):
     return window_size, fixed_overlap
 
 
+#Feature
 #bug will fail if data len=11 because it will fail to find windowsize=5
 #it will work for our case where data len=31 or len=42
 def moving_avg(data):
@@ -74,7 +75,7 @@ def moving_avg(data):
     return result     
 
 
-
+# Feature
 def get_fft_features(data1):
 	feature1 = [ abs(list(tsfresh.feature_extraction.feature_calculators.fft_coefficient(data1[i,:], [{"coeff": 2, "attr": "real"}]))[0][1]) for i in range(len(data1)) ]
 	feature2 = [ abs(list(tsfresh.feature_extraction.feature_calculators.fft_coefficient(data1[i,:], [{"coeff": 3, "attr": "real"}]))[0][1]) for i in range(len(data1)) ]
@@ -84,7 +85,7 @@ def get_fft_features(data1):
 	featute_matrix = np.array([feature1, feature2, feature3, feature4, feature5])
 	return featute_matrix.T
 
-
+# Feature
 def normal_skew(data):
     result = []
     for row_data in data:
@@ -130,6 +131,7 @@ def moving_kurt(data):
         result.append(kurt_list)
     return result
 
+# Feature
 def get_entropy(data1):
     entropy_feature = [ tsfresh.feature_extraction.feature_calculators.sample_entropy(data1[i,:]) for i in range(len(data1)) ]
     entropy_feature = np.array(entropy_feature).reshape((len(data1), 1))
