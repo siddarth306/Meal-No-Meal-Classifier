@@ -3,8 +3,7 @@ from tensorflow import keras
 import numpy as np
 
 
-class ann:
-	
+class Ann:
 	def __init__(self):
 		self.model = None
 

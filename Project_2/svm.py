@@ -1,12 +1,12 @@
 from sklearn.svm import SVC
 
-class SVM():
+class SVM:
     def __init__(self):
-        __svm = None
+        self.__svm = None
 
-    def train(X,Y):
-        __svm = SVC(kernel='poly', degree=8, gamma='scale')
-        __svm.fit(X, Y)
+    def train(self, X, Y):
+        self.__svm = SVC(kernel='poly', degree=8, gamma='scale')
+        self.__svm.fit(X, Y)
 
-    def test(X):
-        return __svm.predict(X)
+    def test(self, X):
+        self.__svm.predict(X)

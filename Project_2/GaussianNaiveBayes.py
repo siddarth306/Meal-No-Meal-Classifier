@@ -1,12 +1,12 @@
 from sklearn.naive_bayes import GaussianNB
 
-class GaussianNaiveBayes():
+class GaussianNaiveBayes:
     def __init__(self):
-        __gnb = None
+        self.__gnb = None
 
-    def train(X,Y):
-        __gnb = GaussianNB()
-        __gnb.fit(X, Y)
+    def train(self, X, Y):
+        self.__gnb = GaussianNB()
+        self.__gnb.fit(X, Y)
 
-    def test(X):
-        return __gnb.predict(X)
+    def test(self, X):
+        self.__gnb.predict(X)
