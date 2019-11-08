@@ -9,4 +9,4 @@ class GaussianNaiveBayes:
         self.__gnb.fit(X, Y)
 
     def test(self, X):
-        self.__gnb.predict(X)
+        return self.__gnb.predict(X)
