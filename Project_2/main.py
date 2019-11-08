@@ -77,9 +77,12 @@ def get_feature_mattrix():
 	pca_matrix2 = np.concatenate((pca_matrix2, temp), axis=1)
 
 	#combine mattrix
+	feature_mattrix = np.concatenate((pca_matrix1, pca_matrix2), axis=0)
 
 	#shuffle
+	np.random.shuffle(feature_mattrix)
 
+	return feature_mattrix
 
 	#return combined mattrix
 
@@ -91,6 +94,8 @@ def training(algo, data):
 
 def main():
 	feature_mattrix = get_feature_mattrix()
+	print(feature_mattrix)
+
 	training("ANN", feature_mattrix)
 
 
