@@ -5,7 +5,7 @@ from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
 
-class PCA:
+class cal_PCA:
     def __init__(self):
         self.pca = None
 
@@ -17,13 +17,13 @@ class PCA:
 
         # compute pca
         self.pca = PCA(n_components=5)
-        principalComponents = pca.fit_transform(x)
+        principalComponents = self.pca.fit_transform(x)
         principalDf = pd.DataFrame(data = principalComponents
         , columns = ['principal component 1', 'principal component 2', 'principal component 3', 'principle component 4', 'principle component 5'])
 
         # explained variance tells you how much information (variance)
         #  can be attributed to each of the principal components.
-        print ("\nExplained Variance", pca.explained_variance_ratio_)
+        print ("\nExplained Variance", self.pca.explained_variance_ratio_)
         print(principalDf)
         return principalComponents
 
@@ -33,12 +33,12 @@ class PCA:
 
         x = StandardScaler().fit_transform(feat_matrix)
 
-        principalComponents = pca.transform(x)
+        principalComponents = self.pca.transform(x)
         principalDf = pd.DataFrame(data = principalComponents
         , columns = ['principal component 1', 'principal component 2', 'principal component 3', 'principle component 4', 'principle component 5'])
 
         # explained variance tells you how much information (variance)
         #  can be attributed to each of the principal components.
-        print ("\nExplained Variance", pca.explained_variance_ratio_)
+        print ("\nExplained Variance", self.pca.explained_variance_ratio_)
         print(principalDf)
         return principalComponents

@@ -1,9 +1,10 @@
 from utilities import parse_and_interpolate
 import numpy as np
-from PCA_2 import performPCA
+#from PCA_2 import performPCA
 import matplotlib.pyplot as plt
 import math
 from feature_selection import *
+import PCA as p
 
 
 def plot(data, title, color):
@@ -31,27 +32,23 @@ def get_feature_mattrix():
 	#----------------------label = 1-------------------------------
 	data = parse_and_interpolate(files[0])
 	fft_features = get_fft_features(data)
-	#moving_kurt_features = moving_kurt(data)
 	entropy_feature = get_entropy(data)
 	moving_avg_features = np.array(moving_avg(data))
 	normal_skew_feature = normal_skew(data)
 
 	for index in range(1, int(len(files)/2)):
-		#print(files[index])
 		data = parse_and_interpolate(files[index])
 	
 		fft_features = np.concatenate((fft_features, get_fft_features(data)), axis=0)
 		moving_avg_features = np.concatenate((moving_avg_features, np.array(moving_avg(data))), axis=0)
-		#moving_kurt_features = np.concatenate((moving_kurt_features, moving_kurt(data)), axis=0)
 		entropy_feature = np.concatenate((entropy_feature, get_entropy(data)), axis=0) 
 		normal_skew_feature = np.concatenate((normal_skew_feature, normal_skew(data)), axis=0)
 
 	feature_mattrix = np.concatenate(( moving_avg_features, entropy_feature, fft_features, normal_skew_feature), axis=1)
 	np.set_printoptions(suppress=True)
-	#print(feature_mattrix.shape)
-	
 
-	pca_matrix1 = performPCA(feature_mattrix)
+	PCA = p.cal_PCA()
+	pca_matrix1 = PCA.performPCA(feature_mattrix)
 	temp = np.ones((pca_matrix1.shape[0], 1))
 	pca_matrix1 = np.concatenate((pca_matrix1, temp), axis=1)
 
@@ -60,25 +57,24 @@ def get_feature_mattrix():
 	#-----------------------label = 0-------------------------------
 	data = parse_and_interpolate(files[int(len(files)/2)])
 	fft_features = get_fft_features(data)
-	#moving_kurt_features = moving_kurt(data)
 	entropy_feature = get_entropy(data)
 	moving_avg_features = np.array(moving_avg(data))
 	normal_skew_feature = normal_skew(data)
 
 	for index in range(int(len(files)/2)+1, len(files)):
-		#print(files[index])
 		data = parse_and_interpolate(files[index])
 	
 		fft_features = np.concatenate((fft_features, get_fft_features(data)), axis=0)
 		moving_avg_features = np.concatenate((moving_avg_features, np.array(moving_avg(data))), axis=0)
-		#moving_kurt_features = np.concatenate((moving_kurt_features, moving_kurt(data)), axis=0)
 		entropy_feature = np.concatenate((entropy_feature, get_entropy(data)), axis=0) 
 		normal_skew_feature = np.concatenate((normal_skew_feature, normal_skew(data)), axis=0)
 
 	feature_mattrix = np.concatenate(( moving_avg_features, entropy_feature, fft_features, normal_skew_feature), axis=1)
 
 	#get PCA mattrix2 and add label
-
+	pca_matrix2 = PCA.usePCA(feature_mattrix)
+	temp = np.zeros((pca_matrix2.shape[0], 1))
+	pca_matrix2 = np.concatenate((pca_matrix2, temp), axis=1)
 
 	#combine mattrix
 
