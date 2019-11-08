@@ -23,8 +23,8 @@ class cal_PCA:
 
         # explained variance tells you how much information (variance)
         #  can be attributed to each of the principal components.
-        print ("\nExplained Variance", self.pca.explained_variance_ratio_)
-        print(principalDf)
+        # print ("\nExplained Variance", self.pca.explained_variance_ratio_)
+        # print(principalDf)
         return principalComponents
 
 
@@ -39,6 +39,6 @@ class cal_PCA:
 
         # explained variance tells you how much information (variance)
         #  can be attributed to each of the principal components.
-        print ("\nExplained Variance", self.pca.explained_variance_ratio_)
-        print(principalDf)
+        # print ("\nExplained Variance", self.pca.explained_variance_ratio_)
+        # print(principalDf)
         return principalComponents

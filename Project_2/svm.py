@@ -1,4 +1,5 @@
 from sklearn.svm import SVC
+from sklearn.model_selection import cross_val_score
 
 class SVM:
     def __init__(self):
@@ -9,4 +10,9 @@ class SVM:
         self.__svm.fit(X, Y)
 
     def test(self, X):
-        self.__svm.predict(X)
+        return self.__svm.predict(X)
+
+    def k_fold_validate(self, x, y):
+        scores = cross_val_score(self.__svm, x, y, cv=4)
+        print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+
