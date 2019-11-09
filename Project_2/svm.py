@@ -13,6 +13,6 @@ class SVM:
         return self.__svm.predict(X)
 
     def k_fold_validate(self, x, y):
-        scores = cross_val_score(self.__svm, x, y, cv=4)
+        scores = cross_val_score(self.__svm, x, y, cv=4, scoring='accuracy')
         print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
 

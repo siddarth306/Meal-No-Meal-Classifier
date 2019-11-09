@@ -83,13 +83,11 @@ def get_feature_mattrix():
 	#shuffle
 	np.random.shuffle(feature_mattrix)
 
-	return feature_mattrix
+	return feature_mattrix, PCA
 
 	#return combined mattrix
 
 def training(algo, data):
-	# if algo == ANN:
-	# 	use_ann()
 
 	# split the data from the class label
 	x, y = data[:, :-1], data[:, -1]
@@ -97,15 +95,15 @@ def training(algo, data):
 	if algo == "SVM":
 		SVM = s.SVM()
 		SVM.train(x,y)
-		SVM.k_fold_validate(x,y) #perform k-fold cross validation
-
-
+		SVM.k_fold_validate(x,y) # perform k-fold cross validation
 
 
 def main():
-	feature_mattrix = get_feature_mattrix()
+	feature_mattrix, PCA = get_feature_mattrix() # need the PCA object to fit testing
 	# print(feature_mattrix)
-	training ("SVM", feature_mattrix)
+
+	# train machines
+	training("SVM", feature_mattrix)
 	# training("ANN", feature_mattrix)
 
 

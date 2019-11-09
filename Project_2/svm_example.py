@@ -28,5 +28,10 @@ y_pred = svclassifier.predict(X_test)
 
 # Evaulating the algorithm
 from sklearn.metrics import classification_report, confusion_matrix
-print(confusion_matrix(y_test, y_pred))
-print(classification_report(y_test, y_pred))
+# print(confusion_matrix(y_test, y_pred))
+# print(classification_report(y_test, y_pred))
+
+# Another way of evaluating the algorithm using k-fold cross validation
+from sklearn.model_selection import cross_val_score
+scores = cross_val_score(svclassifier, X, y, cv=5)
+print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
