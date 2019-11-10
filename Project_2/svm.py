@@ -18,11 +18,5 @@ class SVM:
 			return [accuracy, report['precision'], report['recall'], report['f1-score']]
 		return y_pred
 
-		# if Y is not None:
-		# 	return [self.__svm.score(X, Y)]
-		# return self.__svm.predict(X)
 
-    # def k_fold_validate(self, x, y):
-    #     scores = cross_val_score(self.__svm, x, y, cv=4, scoring='accuracy')
-    #     print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
 

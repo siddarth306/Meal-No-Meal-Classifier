@@ -173,14 +173,6 @@ def training(x, y):
 	models.append(dt)
 	return models
 
-	# split the data from the class label
-	#x, y = data[:, :-1], data[:, -1]
-
-	#if algo == "SVM":
-	#	SVM = s.SVM()
-	#	SVM.train(x,y)
-	#	SVM.k_fold_validate(x,y) # perform k-fold cross validation
-
 
 def testing(models, x, y=None):
 	evals = []
@@ -214,13 +206,6 @@ def main():
 
 	result = np.array(testing(models, test_data))
 	print(result)
-
-	#test
-	# train machines
-	# training( feature_mattrix)
-	# training("ANN", feature_mattrix)
-
-
 
 
 main()	
