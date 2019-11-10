@@ -212,7 +212,8 @@ def main():
 	filename = input("Input filename: ")
 	test_data = get_test_feature_matrix(filename, PCA) # need the PCA object to fit testing
 
-	print(testing(models, test_data))
+	result = np.array(testing(models, test_data))
+	print(result)
 
 	#test
 	# train machines
