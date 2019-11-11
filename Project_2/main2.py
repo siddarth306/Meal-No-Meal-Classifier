@@ -12,6 +12,9 @@ import DecisionTree as d
 from sklearn.model_selection import KFold
 
 
+# 4 classifiers used -> SVM, ANN, Gaussian Naive Bayes, Decision Trees
+
+# plot graph
 def plot(data, title, color):
 	plt.scatter(range(len(data)), data, c=color)
 	plt.title(title)
@@ -22,6 +25,7 @@ def plot(data, title, color):
 	plt.show()
 
 
+# get Feature mattrix for new test data
 def get_test_feature_matrix(filename, PCA):
 	#import pdb; pdb.set_trace()
 	data = parse_and_interpolate(filename)[0]
@@ -32,17 +36,15 @@ def get_test_feature_matrix(filename, PCA):
 
 	feature_mattrix = np.concatenate(( moving_avg_features, entropy_feature, fft_features, normal_skew_feature), axis=1)
 
-	#get PCA mattrix2 and add label
+	#get PCA mattrix
 	feature_mattrix = PCA.usePCA(feature_mattrix)
 	return feature_mattrix
 
 
-
+# get Feature mattrix for given data
 def get_feature_mattrix():
-	
 
-
-	meal_files = [
+	meal_files = 	[
 					   'MealNoMealData/mealData1.csv', 'MealNoMealData/mealData2.csv', 
 					   'MealNoMealData/mealData3.csv', 'MealNoMealData/mealData4.csv', 
 					   'MealNoMealData/mealData5.csv',
@@ -56,6 +58,7 @@ def get_feature_mattrix():
 	   
 	meal_data = parse_and_interpolate(meal_files)
 	no_meal_data = parse_and_interpolate(no_meal_files)
+
 	#------------------- for meal data-----------------------------
 	#----------------------label = 1-------------------------------
 	data = meal_data[0]
@@ -75,6 +78,7 @@ def get_feature_mattrix():
 	feature_mattrix = np.concatenate((moving_avg_features, entropy_feature, fft_features, normal_skew_feature), axis=1)
 	np.set_printoptions(suppress=True)
 
+	#get PCA mattrix2 and add label
 	PCA = p.cal_PCA()
 	pca_matrix1 = PCA.performPCA(feature_mattrix)
 	temp = np.ones((pca_matrix1.shape[0], 1))
@@ -113,6 +117,7 @@ def get_feature_mattrix():
 	return feature_mattrix, PCA
 
 
+# Perfrom K-fold cross validation on all 4 models (k here is 4)
 def kFold(data):
 	kf = KFold(4,True,1)
 	evals1 = []
@@ -160,7 +165,7 @@ def kFold(data):
 		print(resultlabel[idx],i)
 	return
 
-
+# train all the 4 models
 def training(x, y):
 	models = []
 	svm = s.SVM()
@@ -181,15 +186,8 @@ def training(x, y):
 	models.append(dt)
 	return models
 
-	# split the data from the class label
-	#x, y = data[:, :-1], data[:, -1]
 
-	#if algo == "SVM":
-	#	SVM = s.SVM()
-	#	SVM.train(x,y)
-	#	SVM.k_fold_validate(x,y) # perform k-fold cross validation
-
-
+# test all the 4 models
 def testing(models, x, y=None):
 	evals = []
 
@@ -205,31 +203,26 @@ def testing(models, x, y=None):
 	return tuple(evals)
 
 
-
-
 def main():
 	
-	feature_mattrix, PCA = get_feature_mattrix() # need the PCA object to fit testing
+	# get feature mattrix for the given dataset
+	feature_mattrix, PCA = get_feature_mattrix()
 
-	#kfold to evaluate model
+	# kfold to evaluate models
 	kFold(feature_mattrix)
 
+	# train on the given dataset
 	train_x, train_y = feature_mattrix[:, :-1], feature_mattrix[:, -1]
 	models = training(train_x, train_y)
 
+	# input data file and get feature mattrix for new data
 	filename = input("Input filename: ")
-	test_data = get_test_feature_matrix([filename], PCA) # need the PCA object to fit testing
+	test_data = get_test_feature_matrix([filename], PCA)
 
+	# predict new data using learned models
 	result = testing(models, test_data)
 	result = np.array(result)
 	print(result)
-
-	#test
-	# train machines
-	# training( feature_mattrix)
-	# training("ANN", feature_mattrix)
-
-
 
 
 main()	
