@@ -1,6 +1,9 @@
-<b>Requirements<b>
+# CSE 572: Project 2 - Meal / No Meal Classification
+
+## Requirements/Dependencies
 python3, tensorflow, keras, sklearn, numpy, pandas, matplotlib, impyute, datawig, tsfresh, scipy
 
+## Execution Instructions
 Steps-
 1. run main.py
 2. input the name of new test file as command line argument. (file should be a csv file).
