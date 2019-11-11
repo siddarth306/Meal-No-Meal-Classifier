@@ -10,6 +10,7 @@ import ann as a
 import GaussianNaiveBayes as g
 import DecisionTree as d
 from sklearn.model_selection import KFold
+import adaBoost as ab
 
 
 # 4 classifiers used -> SVM, ANN, Gaussian Naive Bayes, Decision Trees
@@ -174,7 +175,7 @@ def training(x, y):
 	ann = a.Ann()
 	ann.train(x,y)
 	
-	gnb = g.GaussianNaiveBayes()
+	gnb = ab.AdaBoost()
 	gnb.train(x,y)
 
 	dt = d.DecisionTree()
