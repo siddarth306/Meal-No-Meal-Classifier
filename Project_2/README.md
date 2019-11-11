@@ -9,7 +9,7 @@ python3, tensorflow, keras, sklearn, numpy, pandas, matplotlib, impyute, datawig
   ```python main.py```
 
 * **For Test**
-  * In the terminal/command line paste the **realtive path** of the test file.
+  * In the terminal/command line paste the **absolute or realtive path** of the test file.
   * Test file should be in **CSV** format (structure similar to data provided)
   * Example
     ``` Sample Here```
