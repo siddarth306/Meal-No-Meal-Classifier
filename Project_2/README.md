@@ -42,5 +42,5 @@ When the program is executed 4 models are tranied and cross validated.
   * Ada Boost
   * Decision Tree
   
-### Value of k
+### Value of K in K-Fold
   * 4
