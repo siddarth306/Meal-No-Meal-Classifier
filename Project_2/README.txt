@@ -1,4 +1,4 @@
-Requirements-
+<b>Requirements<b>
 python3, tensorflow, keras, sklearn, numpy, pandas, matplotlib, impyute, datawig, tsfresh, scipy
 
 Steps-
