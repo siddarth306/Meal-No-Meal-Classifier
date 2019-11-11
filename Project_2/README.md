@@ -4,9 +4,9 @@
 python3, tensorflow, keras, sklearn, numpy, pandas, matplotlib, impyute, datawig, tsfresh, scipy
 
 ## Execution Instructions
-*Execute "main.py"
+* Execute "main.py"
 ```python main.py```
-2. **For Test**
+* **For Test**
 
 
 Test file shoudl be a csv (same as data provided)
