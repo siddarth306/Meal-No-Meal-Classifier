@@ -12,7 +12,8 @@ python3, tensorflow, keras, sklearn, numpy, pandas, matplotlib, impyute, datawig
   * In the terminal/command line paste the **absolute or realtive path** of the test file.
   * Test file should be in **CSV** format (structure similar to data provided)
   * Example
-    ``` Sample Here```
+    ``` Input filename (Enter 0 to exit): MealNoMealData/mealData1.csv
+```
   * Output:
     * dfjks
 
