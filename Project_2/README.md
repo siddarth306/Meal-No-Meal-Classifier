@@ -22,8 +22,8 @@ When the program is executed 4 models are tranied and cross validated.
 ### Models:
   * SVM
   * ANN
+  * Ada Boost
   * Decision Tree
-  * 4
   
 ### Value of k
   * 4
