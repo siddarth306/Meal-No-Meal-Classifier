@@ -17,7 +17,7 @@ class Ann:
 			])
 
 		self.model.compile(optimizer='adam', loss='sparse_categorical_crossentropy',metrics=['accuracy'])
-		self.model.fit(X_train, Y_train, batch_size= 50, epochs=500)
+		self.model.fit(X_train, Y_train, batch_size= 50, epochs=500, verbose=0)
 
 	def test(self, X, Y):
 
