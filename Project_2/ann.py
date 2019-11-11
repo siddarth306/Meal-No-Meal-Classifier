@@ -11,13 +11,13 @@ class Ann:
 	def train(self, X_train, Y_train):
 
 		self.model=keras.Sequential([
-			keras.layers.Dense(20,activation=tf.nn.relu),
-			keras.layers.Dense(15,activation=tf.nn.relu),
+			keras.layers.Dense(50,activation=tf.nn.relu),
+			keras.layers.Dense(30,activation=tf.nn.relu),
 			keras.layers.Dense(2,activation=tf.nn.softmax)
 			])
 
-		self.model.compile(optimizer='adamax', loss='sparse_categorical_crossentropy',metrics=['accuracy'])
-		self.model.fit(X_train, Y_train, batch_size= 20, epochs=100, verbose=0)
+		self.model.compile(optimizer='adam', loss='sparse_categorical_crossentropy',metrics=['accuracy'])
+		self.model.fit(X_train, Y_train, batch_size= 50, epochs=500, verbose=0)
 
 	def test(self, X, Y):
 

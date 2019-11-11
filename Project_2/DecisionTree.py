@@ -16,8 +16,3 @@ class DecisionTree:
 			accuracy = accuracy_score(Y, y_pred, normalize=True)
 			return [accuracy, report['precision'], report['recall'], report['f1-score']]
 		return y_pred
-
-
-		# if Y is not None:
-		# 	return [self.__dt.score(X,Y)]
-		# return self.__dt.predict(X)

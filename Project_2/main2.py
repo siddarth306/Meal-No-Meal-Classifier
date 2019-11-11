@@ -18,7 +18,6 @@ def plot(data, title, color):
 	plt.xlabel("Time Series Data")
 	plt.ylabel("Feature Values")
 	plt.grid(True)
-	#plt.ylim(y_min, y_max)
 	plt.savefig(title)
 	plt.show()
 
@@ -221,7 +220,9 @@ def main():
 	filename = input("Input filename: ")
 	test_data = get_test_feature_matrix([filename], PCA) # need the PCA object to fit testing
 
-	print(testing(models, test_data))
+	result = testing(models, test_data)
+	result = np.array(result)
+	print(result)
 
 	#test
 	# train machines

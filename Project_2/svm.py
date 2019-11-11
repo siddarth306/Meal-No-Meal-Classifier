@@ -7,7 +7,7 @@ class SVM:
 		self.__svm = None
 
 	def train(self, X, Y):
-		self.__svm = SVC(kernel='poly', degree=8, gamma='scale')
+		self.__svm = SVC(kernel='rbf', gamma='scale')
 		self.__svm.fit(X, Y)
 
 	def test(self, X, Y=None):
