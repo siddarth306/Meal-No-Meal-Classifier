@@ -13,11 +13,15 @@ python3, tensorflow, keras, sklearn, numpy, pandas, matplotlib, impyute, datawig
   * Test file should be in **CSV** format (structure similar to data provided)
   * Example
     ``` Sample Here```
-  * Output
+  * Output:
+    * dfjks
 
 
 ## Description
 When the program is executed 4 models are tranied and cross validated.
+
+### Execution Flow
+  *
 
 ### Models:
   * SVM
