@@ -24,12 +24,15 @@ def parse_and_interpolate(filename_list):
         for list_idx,each_list in enumerate(df_lists):
             nanPercent = sum([1  if math.isnan(val) else 0 for val in each_list]) / len(each_list)
             #nan_check = np.isnan(np.array(each_list)).all()
-            if nanPercent < 0.4:
+            if nanPercent < 0.1:
                 valid_df_list.append(each_list)
         all_dfs = all_dfs + valid_df_list
         len_list[idx] = len(valid_df_list)
     filled_df_list = []
-    filled_df = mice(np.array(all_dfs))
+    if np.isnan(np.array(all_dfs)).any():
+        filled_df = mice(np.array(all_dfs))
+    else:
+        filled_df = np.array(all_dfs)
 
     result = []
     start = 0

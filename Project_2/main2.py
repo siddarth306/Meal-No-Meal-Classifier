@@ -24,6 +24,7 @@ def plot(data, title, color):
 
 
 def get_test_feature_matrix(filename, PCA):
+	#import pdb; pdb.set_trace()
 	data = parse_and_interpolate(filename)[0]
 	fft_features = get_fft_features(data)
 	entropy_feature = get_entropy(data)
@@ -218,7 +219,7 @@ def main():
 	models = training(train_x, train_y)
 
 	filename = input("Input filename: ")
-	test_data = get_test_feature_matrix(filename, PCA) # need the PCA object to fit testing
+	test_data = get_test_feature_matrix([filename], PCA) # need the PCA object to fit testing
 
 	print(testing(models, test_data))
 
