@@ -1,9 +1,9 @@
-from utilities import parse_and_interpolate
+from utilities2 import parse_and_interpolate
 import numpy as np
 #from PCA_2 import performPCA
 import matplotlib.pyplot as plt
 import math
-from feature_selection import *
+from feature_selection2 import *
 import PCA as p
 import svm as s
 import ann as a
@@ -24,7 +24,7 @@ def plot(data, title, color):
 
 
 def get_test_feature_matrix(filename, PCA):
-	data = parse_and_interpolate(filename)
+	data = parse_and_interpolate(filename)[0]
 	fft_features = get_fft_features(data)
 	entropy_feature = get_entropy(data)
 	moving_avg_features = moving_avg(data)
@@ -40,24 +40,32 @@ def get_test_feature_matrix(filename, PCA):
 
 def get_feature_mattrix():
 	
-	files = [
-			'MealNoMealData/mealData1.csv', 'MealNoMealData/mealData2.csv', 
-			'MealNoMealData/mealData3.csv', 'MealNoMealData/mealData4.csv', 
-			'MealNoMealData/mealData5.csv', 'MealNoMealData/Nomeal1.csv',
-			'MealNoMealData/Nomeal2.csv', 'MealNoMealData/Nomeal3.csv',
-			'MealNoMealData/Nomeal4.csv', 'MealNoMealData/Nomeal5.csv'
-			]
 
+
+	meal_files = [
+					   'MealNoMealData/mealData1.csv', 'MealNoMealData/mealData2.csv', 
+					   'MealNoMealData/mealData3.csv', 'MealNoMealData/mealData4.csv', 
+					   'MealNoMealData/mealData5.csv',
+						]
+	no_meal_files = [
+					   'MealNoMealData/Nomeal1.csv','MealNoMealData/Nomeal2.csv',
+					   'MealNoMealData/Nomeal3.csv','MealNoMealData/Nomeal4.csv',
+					   'MealNoMealData/Nomeal5.csv'
+					   ]
+
+	   
+	meal_data = parse_and_interpolate(meal_files)
+	no_meal_data = parse_and_interpolate(no_meal_files)
 	#------------------- for meal data-----------------------------
 	#----------------------label = 1-------------------------------
-	data = parse_and_interpolate(files[0])
+	data = meal_data[0]
 	fft_features = get_fft_features(data)
 	entropy_feature = get_entropy(data)
 	moving_avg_features = moving_avg(data)
 	normal_skew_feature = normal_skew(data)
 
-	for index in range(1, int(len(files)/2)):
-		data = parse_and_interpolate(files[index])
+	for index in range(1, len(meal_data)):
+		data = meal_data[index]
 	
 		fft_features = np.concatenate((fft_features, get_fft_features(data)), axis=0)
 		moving_avg_features = np.concatenate((moving_avg_features, moving_avg(data)), axis=0)
@@ -75,14 +83,14 @@ def get_feature_mattrix():
 
 	#------------------- for no meal data-----------------------------
 	#-----------------------label = 0-------------------------------
-	data = parse_and_interpolate(files[int(len(files)/2)])
+	data = no_meal_data[0]
 	fft_features = get_fft_features(data)
 	entropy_feature = get_entropy(data)
 	moving_avg_features = moving_avg(data)
 	normal_skew_feature = normal_skew(data)
 
-	for index in range(int(len(files)/2)+1, len(files)):
-		data = parse_and_interpolate(files[index])
+	for index in range(1, len(no_meal_data)):
+		data = no_meal_data[index]
 	
 		fft_features = np.concatenate((fft_features, get_fft_features(data)), axis=0)
 		moving_avg_features = np.concatenate((moving_avg_features, moving_avg(data)), axis=0)
@@ -173,6 +181,14 @@ def training(x, y):
 	models.append(dt)
 	return models
 
+	# split the data from the class label
+	#x, y = data[:, :-1], data[:, -1]
+
+	#if algo == "SVM":
+	#	SVM = s.SVM()
+	#	SVM.train(x,y)
+	#	SVM.k_fold_validate(x,y) # perform k-fold cross validation
+
 
 def testing(models, x, y=None):
 	evals = []
@@ -204,8 +220,14 @@ def main():
 	filename = input("Input filename: ")
 	test_data = get_test_feature_matrix(filename, PCA) # need the PCA object to fit testing
 
-	result = np.array(testing(models, test_data))
-	print(result)
+	print(testing(models, test_data))
+
+	#test
+	# train machines
+	# training( feature_mattrix)
+	# training("ANN", feature_mattrix)
+
+
 
 
 main()	
