@@ -1,4 +1,4 @@
-# CSE 572: Project 2 - Meal / No Meal Classification
+# CSE 572: Project 2 - Meal / No Meal Classification (Group 30)
 
 ## Requirements/Dependencies
 python3, tensorflow, keras, sklearn, numpy, pandas, matplotlib, impyute, datawig, tsfresh, scipy
