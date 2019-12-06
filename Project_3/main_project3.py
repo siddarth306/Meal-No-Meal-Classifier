@@ -8,10 +8,6 @@ import dbscan as db
 from sklearn import metrics
 import PCA as p
 
-
-
-# 4 classifiers used -> SVM, ANN, Ada Boost, Decision Trees
-
 # plot graph
 def plot(data, title, color):
     plt.scatter(range(len(data)), data, c=color)
@@ -79,7 +75,7 @@ def training(feat_mat):
     models = []
 
     k = km.K_means(10)
-    k_labels, k_centroids= k.train(feat_mat)
+    k_labels, k_centroids, k_inertia = k.train(feat_mat)
 
     d = db.Dbscan(2, 3)
     d_labels = d.train(feat_mat)
@@ -91,11 +87,16 @@ def training(feat_mat):
     print(k_labels)
     print("Silhouette Coefficient: %0.3f"
           % metrics.silhouette_score(feat_mat, k_labels))
+    print("Sum of squared distances of samples to their closest cluster center %0.3f"
+          % k_inertia)
+
+
 
     print ("\nMeal Data: dbscan cluster results") #labels
     print(d_labels)
     print("Silhouette Coefficient: %0.3f"
           % metrics.silhouette_score(feat_mat, d_labels))
+
 
 
     return models
@@ -118,7 +119,6 @@ def main():
 
     # train on the given dataset
     models = training(feature_mattrix)
-
 
 
 
