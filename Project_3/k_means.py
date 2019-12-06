@@ -8,12 +8,12 @@ class K_means:
     def train(self, feature_mattrix):
 
         # K-Means (run k-means on data DataFrame formatted as a matrix
-        self.model = KMeans(self.n_clusters, random_state=0).fit(feature_mattrix)
+        self.model = KMeans(self.n_clusters, init='k-means++', n_init=20, random_state=None, algorithm='auto').fit(feature_mattrix)
 
         # print(self.model.labels_)
         # print(self.model.cluster_centers_)
 
-        return self.model.labels_, self.model.cluster_centers_
+        return self.model.labels_, self.model.cluster_centers_, self.model.inertia_
 
 
     def test(self, feature_mattrix):
