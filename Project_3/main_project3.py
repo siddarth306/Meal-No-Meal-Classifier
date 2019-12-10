@@ -7,6 +7,7 @@ import k_means as km
 import dbscan as db
 from sklearn import metrics
 import PCA as p
+from Sum_of_Squared_Error import SSE_dbscan
 
 # plot graph
 def plot(data, title, color):
@@ -87,7 +88,7 @@ def training(feat_mat):
     print(k_labels)
     print("Silhouette Coefficient: %0.3f"
           % metrics.silhouette_score(feat_mat, k_labels))
-    print("Sum of squared distances of samples to their closest cluster center %0.3f"
+    print("Sum of squared distances of samples to their closest cluster center: %0.3f"
           % k_inertia)
 
 
@@ -96,8 +97,8 @@ def training(feat_mat):
     print(d_labels)
     print("Silhouette Coefficient: %0.3f"
           % metrics.silhouette_score(feat_mat, d_labels))
-
-
+    print("Sum of squared distances of samples to their closest cluster center: %0.3f"
+          % SSE_dbscan(feat_mat,d_labels))
 
     return models
 
