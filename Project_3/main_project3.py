@@ -7,7 +7,7 @@ import k_means as km
 import dbscan as db
 from sklearn import metrics
 import PCA as p
-from Sum_of_Squared_Error import SSE_dbscan
+from Sum_of_Squared_Error import *
 
 # plot graph
 def plot(data, title, color):
@@ -88,16 +88,16 @@ def training(feat_mat):
     print(k_labels)
     print("Silhouette Coefficient: %0.3f"
           % metrics.silhouette_score(feat_mat, k_labels))
-    print("Sum of squared distances of samples to their closest cluster center: %0.3f"
+    print("BUILT-IN LIB: Sum of squared distances of samples to their closest cluster center: %0.3f"
           % k_inertia)
-
-
+    print("Manual SSE: %0.3f"
+          %SSE_kmeans(feat_mat, k_labels, k_centroids))
 
     print ("\nMeal Data: dbscan cluster results") #labels
     print(d_labels)
     print("Silhouette Coefficient: %0.3f"
           % metrics.silhouette_score(feat_mat, d_labels))
-    print("Sum of squared distances of samples to their closest cluster center: %0.3f"
+    print("Manual SSE: %0.3f"
           % SSE_dbscan(feat_mat,d_labels))
 
     return models
@@ -123,25 +123,25 @@ def main():
 
 
 
-    filename = "1"
-    # input data file and get feature mattrix for new data
-    while True:
-
-        filename = input("Input filename (Enter 0 to exit): ")
-        if filename == "0":
-            break
-        try:
-            test_data = get_test_feature_matrix([filename], PCA)
-        except Exception as e:
-            print("Error Cannot open file")
-            continue
-
-        # predict new data using learned models
-        result = testing(models, test_data)
-        result = np.array(result)
-        result_labels = ["\nK_MEANS:\n", "\nDBSCAN:\n"]
-        for i in range(len(result_labels)):
-            print(result_labels[i], result[i])
+    # filename = "1"
+    # # input data file and get feature mattrix for new data
+    # while True:
+    #
+    #     filename = input("Input filename (Enter 0 to exit): ")
+    #     if filename == "0":
+    #         break
+    #     try:
+    #         test_data = get_test_feature_matrix([filename], PCA)
+    #     except Exception as e:
+    #         print("Error Cannot open file")
+    #         continue
+    #
+    #     # predict new data using learned models
+    #     result = testing(models, test_data)
+    #     result = np.array(result)
+    #     result_labels = ["\nK_MEANS:\n", "\nDBSCAN:\n"]
+    #     for i in range(len(result_labels)):
+    #         print(result_labels[i], result[i])
 
 
 
